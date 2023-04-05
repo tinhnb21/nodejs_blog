@@ -25,15 +25,11 @@
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "homepage": "https://github.com/tinhnb21/nodejs_blog#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.4"
+    "express-handlebars": "^7.0.4",
+    "mongoose": "^7.0.3"
   },
   "devDependencies": {
     "husky": "^8.0.3",
