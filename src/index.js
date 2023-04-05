@@ -13,6 +13,7 @@ db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//nhận req.body
 app.use(
     express.urlencoded({
         extended: true,
