@@ -22,7 +22,7 @@ app.use(
 app.use(express.json());
 
 //http logger
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 //template engine
 app.engine(
