@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const methodOverride = require('method-override');
-const SortMiddleware = require('./app/middlewares/sortMiddleware');
+const sortMiddleware = require('./app/middlewares/sortMiddleware');
 const app = express();
 const port = 3000;
 
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 
 //apply middleware custom
-app.use(SortMiddleware);
+app.use(sortMiddleware);
 
 //http logger
 // app.use(morgan('combined'));
