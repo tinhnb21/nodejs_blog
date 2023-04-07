@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const methodOverride = require('method-override');
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
 const app = express();
 const port = 3000;
 
@@ -29,6 +30,9 @@ app.use(express.json());
 //method override
 app.use(methodOverride('_method'));
 
+//apply middleware custom
+app.use(SortMiddleware);
+
 //http logger
 // app.use(morgan('combined'));
 
@@ -39,6 +43,24 @@ app.engine(
         extname: '.hbs',
         helpers: {
             sum: (a, b) => a + b,
+            sortable: (field, sort) => {
+                const sortType = field === sort.column ? sort.type : 'default';
+                const icons = {
+                    default: '<img src="/img/elevator.png" width="20px" />',
+                    asc: '<img src="/img/arrow-up.png" width="20px" />',
+                    desc: '<img src="/img/arrow-down.png" width="20px" />',
+                };
+
+                const types = {
+                    default: 'desc',
+                    asc: 'desc',
+                    desc: 'asc'
+                };
+
+                const icon = icons[sortType];
+                const type = types[sortType];
+                return `<a href="?_sort&column=${field}&type=${type}">${icon}</a>`;
+            }
         }
     }),
 );
